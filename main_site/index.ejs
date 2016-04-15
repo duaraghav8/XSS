@@ -30,6 +30,7 @@
           contentType: 'application/json',
           data: JSON.stringify ({comment: $('input#comment').val (), date: new Date ()})
         });
+        $('input#comment').val ('');
       });
     </script>
 
