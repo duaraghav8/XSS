@@ -12,8 +12,12 @@ var app = require ('express') (),
 app.use (bodyParser.json ());
 
 app
-  .post ('/', function (req, res) {
-    console.log (req.body);
+  .post ('/stored', function (req, res) {
+    console.log ('Performed stored XSS: ', req.body);
+    res.sendStatus (201);
+  })
+  .post ('/reflected', function (req, res) {
+    console.log ('Performed reflected XSS: ', req.body);
     res.sendStatus (201);
   })
   .listen (8085, function () {
