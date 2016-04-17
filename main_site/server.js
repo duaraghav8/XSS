@@ -17,6 +17,7 @@ var express = require ('express'),
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('X-XSS-Protection', '0');
     next();
   });
 //------------------CORS-----------------------------------------------------------/
@@ -55,6 +56,23 @@ app
     comment.save (function (err) {
       if (err) {return (res.sendStatus (500));}
       return (res.sendStatus (201));
+    });
+  })
+  .get ('/search', function (req, res) {
+    res.header('X-XSS-Protection', '0');
+    var key = req.query.key;
+    console.log (key);
+
+    commentModel.findOne ({comment: {$regex: ".*" + key + ".*"}}, {comment: 1}, function (err, response) {
+      if (err) {return (res.sendStatus (500));}
+      //if (!comment) {return (res.sendStatus (404));}
+      try { var result = response.comment; }
+      catch (Exception) {var result = 'No results found'; }
+
+      return (res.render ('search', {
+        key: key,
+        result: result
+      }));
     });
   })
   .listen (8080, function () {

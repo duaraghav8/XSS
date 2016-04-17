@@ -22,6 +22,11 @@
     <input type = "text" id = "comment" placeholder="Your comment" />
     <button id = "buttonSubmitComment">Submit</button>
 
+    <form action = "/search" method = "GET">
+      <input type = "text" name = "key" />
+      <input type = "submit" value = "Search" />
+    </form>
+
     <script>
       $('#buttonSubmitComment').click (function () {
         $.ajax ({
