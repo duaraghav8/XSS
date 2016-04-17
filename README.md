@@ -20,3 +20,5 @@ Information Security Project (for College) demonstrating the 3 types of Cross Si
   EJS (Embedded JavaScript) templating engine
   
   HTML, Bootstrap
+  
+  Database: MongoDB
