@@ -32,6 +32,9 @@ app
 
 app
   .get ('/', function (req, res) {
+    res.render ('index', {});
+  })
+  .get ('/comments', function (req, res) {
     if (req.cookies) {
       for (var key in req.cookies) { key !== 'counter' ? res.clearCookie (key, {path: '/'}) : null; }
       //for (var key in req.cookies) { res.clearCookie (key, {path: '/'}); }
@@ -42,7 +45,7 @@ app
       if (err) {return (res.sendStatus (500));}
 
       comments = comments.slice (comments.length-5, comments.length);
-      return (res.render ('index', {
+      return (res.render ('comments', {
         a: comments [0].comment || '',
         b: comments [1].comment || '',
         c: comments [2].comment || '',
@@ -51,7 +54,7 @@ app
       }));
     });
   })
-  .post ('/comment', function (req, res) {
+  .post ('/comments', function (req, res) {
     if (!req.body.comment) { return (res.sendStatus (204)); }
     var comment = new commentModel (req.body);
 
@@ -63,6 +66,9 @@ app
   .get ('/search', function (req, res) {
     res.header('X-XSS-Protection', '0');
     var key = req.query.key;
+    if (!key) {
+      return res.render ('search');
+    }
     //console.log (key);
 
     commentModel.findOne ({comment: {$regex: ".*" + key + ".*"}}, {comment: 1}, function (err, response) {
@@ -71,7 +77,7 @@ app
       try { var result = response.comment; }
       catch (Exception) {var result = 'No results found'; }
 
-      return (res.render ('search', {
+      return (res.render ('searchresult', {
         key: key,
         result: result
       }));

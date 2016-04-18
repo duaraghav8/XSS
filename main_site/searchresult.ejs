@@ -52,7 +52,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/comments"><img src="back.png" style="width:120px;height:60px;"></a>
+          <a class="navbar-brand" href="/search"><img src="back.png" style="width:120px;height:60px;"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,39 +63,29 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div id="tf-contact" class="text-center">
+	<div id="tf-contact" class="text-center">
         <div class="container">
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
 
                     <div class="section-title center">
-                        <h2 style="text-align:left"><strong>Search The Comments Here</strong></h2>
+					    <h2 style="text-align:left"><strong>Search Results</strong></h2>
                         <div class="line">
                             <hr>
                         </div>
                         <div class="clearfix"></div>
-                        <h4 style="text-align:left"><small><em>Type your keyword here</em></small></h4>
+                        <h4 style="text-align:left"><small><em>You searched</em></small></h4>
+						<h3 style="text-align:left"><strong>Search Key:</strong> <small><strong><%- key %></strong></small><br /></h3>
                         <div class="line">
                             </br>
                         </div>
+						<h3 style="text-align:left"><strong>Results:</strong> <small><strong><%- result %></strong></small><br /></h3>
                     </div>
-					<form action ="/search" method="GET">
-					     <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-								 <input type="text" name="key" class="form-control" placeholder="Enter the search term"/></br>
-								 <button type="submit" class="btn tf-btn btn-default">Search</button>
-								 </div>
-							</div>
-						</div>
-					</form>
-					
 				</div>
 			</div>
 		</div>
 	</div>
-	
 	<nav id="footer">
         <div class="container">
             <div class="pull-left fnav">
@@ -111,7 +101,5 @@
             </div>
         </div>
     </nav>
-
-	
 </body>
 </html>
