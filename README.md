@@ -34,3 +34,6 @@ The vulnerability can be fixed if we replace those tags with:
 <%= ... %>  (NOTICE THE '-' HYPHENE IS REPLACED BY '=' EQUAL TO)
 
 This encodes the HTML tags, i.e., \<script\> becomes \&lt;script\&gt;
+
+
+Update: Ours was declared the best Information Security Project amongst all presented by renowned Cyber Security Expert Rakshit Tandon during the inaugural ceremony of ISSA, Dehradun.
