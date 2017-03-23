@@ -22,6 +22,18 @@ Information Security Project (for College) demonstrating the 3 types of Cross Si
   HTML, Bootstrap
   
   Database: MongoDB
+  
+
+**Why is the site vulnerable?**
+
+The vulnerability originates from the way we have used EJS.
+For displaying submitting comments, we use <%- ... %> tags in EJS. Thus, Node simply does a text substitution. So any HTML tags are interpreted as HTML instead of plain text.
+
+The vulnerability can be fixed if we replace those tags with:
+
+<%= ... %>  (NOTICE THE '-' HYPHENE IS REPLACED BY '=' EQUAL TO)
+
+This encodes the HTML tags, i.e., \<script\> becomes \&lt;script\&gt;
 
 
 Update: Ours was declared the best Information Security Project amongst all presented by renowned Cyber Security Expert Rakshit Tandon during the inaugural ceremony of ISSA, Dehradun.
